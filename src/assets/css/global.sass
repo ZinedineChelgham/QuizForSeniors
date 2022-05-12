@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500&display=swap')
+
+@import "variables"
+
+@mixin respond-to($breakpoint)
+  @if map-has-key($breakpoints, $breakpoint)
+    @media #{inspect(map-get($breakpoints, $breakpoint))}
+      @content
+  @else
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. Available breakpoints are: #{map-keys($breakpoints)}."
+
+body
+  margin: 0
+
+*
+  box-sizing: border-box
+
+// MARGIN
+@for $i from 0 through 4
+  .m-#{$i}
+    margin: #{$i}rem #{$i}rem #{$i}rem #{$i}rem !important
+  .mt-#{$i}
+    margin-top: #{$i}rem !important
+  .mb-#{$i}
+    margin-bottom: #{$i}rem !important
+  .mr-#{$i}
+    margin-right: #{$i}rem !important
+  .ml-#{$i}
+    margin-left: #{$i}rem !important
+  .my-#{$i}
+    margin-top: #{$i}rem !important
+    margin-bottom: #{$i}rem !important
+  .mx-#{$i}
+    margin-right: #{$i}rem !important
+    margin-left: #{$i}rem !important
+
+// PADDING
+@for $i from 0 through 4
+  .p-#{$i}
+    padding: #{$i}rem #{$i}rem #{$i}rem #{$i}rem !important
+  .pt-#{$i}
+    padding-top: #{$i}rem !important
+  .pb-#{$i}
+    padding-bottom: #{$i}rem !important
+  .pr-#{$i}
+    padding-right: #{$i}rem !important
+  .pl-#{$i}
+    padding-left: #{$i}rem !important
+  .py-#{$i}
+    padding-top: #{$i}rem !important
+    padding-bottom: #{$i}rem !important
+  .px-#{$i}
+    padding-right: #{$i}rem !important
+    padding-left: #{$i}rem !important
+
+
+@import "flex"
+
+@import "inputs"
+
+@import "buttons"
+
+@import "card"
+
+@import "errors"
+
+.center
+  text-align: center
+
+.lite-panel
+  background: $background-2
+  padding: 0.5rem
+  border-radius: 12px
+  box-shadow: $shadow
+  margin-bottom: 1rem
+  color: $text
+  transition: $default-transition
+
+  .head
+    height: 2rem
+    padding-right: 0.5rem
+
+a.lite-panel
+  &:hover
+    transform: scale(1.1)
+
+
+.panel
+  background: $background-2
+  padding: 1rem
+  border-radius: 2rem
+
+  .panel-head
+    text-align: center
+
+  &.darker
+    background: darken($background-2, 15%)
+
+h1
+  font-size: 2rem
+  font-family: $redhatdisplay
+  font-weight: normal
+  margin-top: 0
+  letter-spacing: spacing(2rem)
+
+h2
+  font-size: 1.75rem
+  font-family: $redhatdisplay
+  font-weight: normal
+  margin-top: 0
+  letter-spacing: spacing(1.75rem)
+
+h3
+  font-size: 1.5rem
+  font-family: $redhatdisplay
+  font-weight: normal
+  margin-top: 0
+  letter-spacing: spacing(1.5rem)
+
+h4
+  font-size: 1.25rem
+  font-family: $redhatdisplay
+  font-weight: normal
+  margin-top: 0
+  letter-spacing: spacing(1.25rem)
+
+h2.question
+  display: flex
+  justify-content: center
+
+  .btn-polyquizz
+    margin-left: 1rem
+
+hr
+  background: $text
+  width: 100%
+  height: 1px
+  border: 0
+  border-radius: 1px
+
+
+$spacings: 8, 16, 32, 64, 128
+$sizings: 8, 16, 32, 64, 128
+
+@each $size in $sizings
+  .p-#{$size}
+    padding: #{$size}px!important
+
+@each $spacing in $spacings
+  .box-spacing-#{$spacing}
+    margin: #{$spacing}px
+
+  .col-12.box-spacing-#{$spacing}
+    margin-left: 0
+    margin-right: 0
+
+$sizes: 16, 24, 32, 40, 48, 56, 64
+
+@each $size in $sizes
+  .font-size-#{$size}
+    font-size: #{$size}px !important
+
+.container
+  width: 100%
+  margin: 0 auto
+  font-family: $redhatdisplay
+  @include respond-to('large')
+    max-width: $large
+    padding: 0 $large / 20
+  @include respond-to('medium')
+    max-width: $medium
+    padding: 0 $medium / 25
+  @include respond-to('small')
+    max-width: $small
+    padding: 0 $small / 30
+
+a
+  text-decoration: none
+
+.uppercase
+  text-transform: uppercase
+
+.modal
+  display: none
+
+  &.opened
+    display: block
+  overflow: hidden
+  width: 100vw
+  height: 100vh
+  background: rgba(0, 0, 0, 0.25)
+  z-index: 1
+  position: fixed
+  top: 0
+  left: 0
+  transition: ass ease 0.1s
+
+  .popup
+    background: $background-1
+    box-shadow: $shadow
+    padding: 12px
+    margin: 10% auto
+    width: 100%
+    border-radius: 12px
+    display: flex
+    flex-direction: column
+    align-items: center
+    @include respond-to('large')
+      max-width: $large
+    @include respond-to('medium')
+      max-width: $medium
+    @include respond-to('small')
+      max-width: $small
+
+    &.small
+      max-width: $small
+
+      .close-box
+        display: flex
+        width: 100%
+        flex-direction: row-reverse
+
+        .close
+          font-size: 24px
+
+      .actions
+        display: flex
+
+
+

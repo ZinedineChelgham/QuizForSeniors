@@ -1,0 +1,2 @@
+GET http://localhost:9428/api/quizzesHistory/1649158527448
+Content-Type: application/json

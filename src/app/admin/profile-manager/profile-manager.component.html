@@ -1,0 +1,11 @@
+<app-admin-header></app-admin-header>
+<div>
+  <div class="col-12 my-2">
+    <div class="flex h-spacing">
+      <div *ngFor="let profile of profileList" class="col-3">
+        <app-components-profile [profile]="profile"></app-components-profile>
+      </div>
+    </div>
+  </div>
+</div>
+
